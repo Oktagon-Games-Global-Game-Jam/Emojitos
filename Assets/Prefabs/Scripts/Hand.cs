@@ -2,10 +2,20 @@
 
 public class Hand : MonoBehaviour
 {
-    [SerializeField] private JoystickIndex _playerIndex = 0;
+    [Header("Player Movement")]
     [SerializeField] private DeltaTimeType _deltaTimeType;
     [SerializeField, Range(1, 10)] private int _horizontalSensibility = 1;
     [SerializeField, Range(1, 10)] private int _verticalSensibility = 1;
+
+    [Header("Player Index")]
+    [SerializeField] private JoystickIndex _playerIndex = 0;
+    [SerializeField] private TMPro.TMP_Text _playerName;
+
+    protected virtual void OnEnable()
+    {
+        int playerNumber = ((int)_playerIndex) + 1;
+        _playerName.text = string.Concat("P", playerNumber.ToString());
+    }
 
     protected virtual void Update()
     {

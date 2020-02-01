@@ -5,6 +5,8 @@ public class Match : MonoBehaviour
 {
     [SerializeField] private Hand _hand;
     [SerializeField] private GameObject _dragObjectsRoot;
+    [SerializeField] private int _timeLimit = 10; // time limit in seconds
+    [SerializeField] private int _finalCountdown = 3; // time limit in seconds
 
     [Header("General Animation")]
     [SerializeField] private TMPro.TMP_Text _matchStateDescriptor;
@@ -26,18 +28,16 @@ public class Match : MonoBehaviour
 
     [Header("Finish Animation")]
     [SerializeField] private string _finishText = "Finish!";
-    [SerializeField, Range(1f, 5f)] private float _finishMaxTime = 0.5f;
-
-    private float _timeLimit; // time limit in seconds
+    [SerializeField, Range(1f, 5f)] private float _finishMaxTime = 0.5f;    
 
     protected virtual void OnEnable()
     {
-        Begin(3f);
+        Begin();
     }
 
-    public virtual void Begin(float timeLimit)
+    public virtual void Begin()
     {
-        _timeLimit = timeLimit;
+        //_timeLimit = timeLimit;
         StartCoroutine(ShowReadySetGo());
     }
 
@@ -76,11 +76,20 @@ public class Match : MonoBehaviour
         {
             _hand.AddDragListener(drag);
         }
-        yield return new WaitForSeconds(_timeLimit);
+
+        yield return new WaitForSeconds(_timeLimit - _finalCountdown);
+
+        // show countdown
+        _matchStateDescriptor.enabled = true;
+        for (int second = _finalCountdown; second > 0; second--)
+        {
+            _matchStateDescriptor.text = second.ToString();
+            yield return new WaitForSeconds(1f);
+        }
 
         foreach (Drag drag in dragComponents)
         {
-            drag.OnCursorEndDrag(_hand.gameObject);
+            drag.OnCursorEndDrag(_hand);
             _hand.RemoveDragListener(drag);
         }
 
@@ -91,7 +100,7 @@ public class Match : MonoBehaviour
     {
         _matchStateDescriptor.enabled = true;
         _matchStateDescriptor.text = _finishText;
-        yield return new WaitForSeconds(_finishMaxTime);
+        yield return new WaitForSeconds(_finishMaxTime );        
 
         _matchStateDescriptor.enabled = false;
         _matchStateDescriptor.text = string.Empty;

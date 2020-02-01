@@ -18,8 +18,8 @@ public class Hand : MonoBehaviour
     [SerializeField] private Vector2 _centerBounds;
 
     [Header("Player Events")]
-    [SerializeField] private GameObjectEvent _hold;
-    [SerializeField] private GameObjectEvent _release;
+    [SerializeField] private HandEvent _hold;
+    [SerializeField] private HandEvent _release;
 
     protected virtual void OnEnable()
     {
@@ -46,12 +46,12 @@ public class Hand : MonoBehaviour
         string submitButtonName = string.Format("Submit {0}", (int)_playerIndex);
         if (Input.GetButtonDown(submitButtonName))
         {
-            _hold.Invoke(gameObject);
+            _hold.Invoke(this);
             Debug.Log("hold");
         }
         else if (Input.GetButtonUp(submitButtonName))
         {
-            _release.Invoke(gameObject);
+            _release.Invoke(this);
             Debug.Log("release");
         }
     }

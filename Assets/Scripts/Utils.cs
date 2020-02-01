@@ -41,4 +41,4 @@ public class Utils
 }
 
 [System.Serializable]
-public class GameObjectEvent : UnityEvent<GameObject> { }
+public class HandEvent : UnityEvent<Hand> { }

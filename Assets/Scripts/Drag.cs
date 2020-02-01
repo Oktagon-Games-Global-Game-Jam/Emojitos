@@ -5,7 +5,7 @@ using UnityEngine;
 public class Drag : MonoBehaviour
 {
     private Collider2D _collider2D;
-    private GameObject _cursor;
+    private Hand _cursor;
     private Vector2? _cursorLastPosition;
 
     protected virtual void OnEnable()
@@ -18,14 +18,14 @@ public class Drag : MonoBehaviour
         _cursorLastPosition = null;
     }
 
-    public void OnCursorStartDrag(GameObject gameObject)
+    public void OnCursorStartDrag(Hand hand)
     {
         Vector2 cursorPosition = Vector2.zero;
-        cursorPosition.x = gameObject.transform.position.x;
-        cursorPosition.y = gameObject.transform.position.y;
+        cursorPosition.x = hand.transform.position.x;
+        cursorPosition.y = hand.transform.position.y;
         if (_collider2D.OverlapPoint(cursorPosition))
         {
-            _cursor = gameObject;
+            _cursor = hand;
             _cursorLastPosition = cursorPosition;
         }
         else
@@ -51,7 +51,7 @@ public class Drag : MonoBehaviour
         }
     }
 
-    public void OnCursorEndDrag(GameObject gameObject)
+    public void OnCursorEndDrag(Hand hand)
     {
         _cursor = null;
     }

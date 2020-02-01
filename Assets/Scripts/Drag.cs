@@ -46,7 +46,6 @@ public class Drag : MonoBehaviour
             cursorPosition.y = _cursor.transform.position.y;
 
             Vector2 cursorDelta = cursorPosition - _cursorLastPosition.Value;
-            Debug.Log(cursorDelta);
             transform.Translate(cursorDelta, Space.World);
 
             _cursorLastPosition = cursorPosition;

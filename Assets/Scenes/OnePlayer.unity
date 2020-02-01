@@ -229,7 +229,12 @@ PrefabInstance:
     - target: {fileID: 3866861145592967836, guid: 684605d04514fde409ef43feb5662218,
         type: 3}
       propertyPath: _minDistanceToSlot
-      value: 3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866861145592967836, guid: 684605d04514fde409ef43feb5662218,
+        type: 3}
+      propertyPath: _scoreIncrementTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3866861145592967837, guid: 684605d04514fde409ef43feb5662218,
         type: 3}

@@ -107,12 +107,12 @@ public class Match : MonoBehaviour
         yield return new WaitForSeconds(_setMaxTime);
 
         // Hide/Show Emoji Pieces
-        //foreach (var slot in _slots)
-        //{
-        //    SpriteRenderer slotRenderer = slot.GetComponentInChildren<SpriteRenderer>();
-        //    slotRenderer.enabled = false;
-        //}
-        
+        foreach (var slot in _slots)
+        {
+            SpriteRenderer slotRenderer = slot.GetComponentInChildren<SpriteRenderer>();
+            slotRenderer.enabled = false;
+        }
+
         foreach (var emojiPiece in _emojiPieces)
         {
             emojiPiece.SetActive(true);
@@ -223,13 +223,18 @@ public class Match : MonoBehaviour
                     }
                 }
             }
-
+            
             totalScoreForAllSlots += maxScoreForSlot;
 
             // Remove the best emoji from the list
             if (bestEmojiPlaceScore != null)
             {
+                Debug.LogFormat("Best Emoji Place: {0} for Slot {1} Score: {2}", bestEmojiPlaceScore.name, slot.name, maxScoreForSlot);
                 emojiPiecesCopy.Remove(bestEmojiPlaceScore);
+            }
+            else
+            {
+                Debug.LogFormat("Slot: {0} has no match", slot.name);
             }
         }
 

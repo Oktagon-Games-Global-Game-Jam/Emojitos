@@ -12,6 +12,8 @@ jobs:
       uses: ncipollo/unity-action@master
       with: 
 #         license: ${{ secrets.license }}
+        username: ${{ secrets.username }}
+        password: ${{ secrets.password }}
         mode: build
         build_method: BuildCommand.PerformBuild
     - name: 'upload artifact'

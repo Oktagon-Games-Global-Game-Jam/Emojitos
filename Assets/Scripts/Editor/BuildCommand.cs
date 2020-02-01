@@ -8,7 +8,7 @@ public static class BuildCommand {
     static void PerformBuild() {
         var options = new BuildPlayerOptions {
             locationPathName = "Build/os_x/test-game.app",
-            scenes = new[] { "Assets/Scenes/SampleScene.unity" },
+            scenes = new[] { "Assets/Scenes/OnePlayer.unity" },
             target = BuildTarget.StandaloneOSX
         };
 

@@ -1,0 +1,21 @@
+name: Unity Build
+
+on: [push]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: 'run unity build'
+      uses: ncipollo/unity-action@master
+      with: 
+#         license: ${{ secrets.license }}
+        mode: build
+        build_method: BuildCommand.PerformBuild
+    - name: 'upload artifact'
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: build.tar.gz
+        path: Build/os_x

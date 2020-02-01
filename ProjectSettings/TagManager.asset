@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Base Emoji
+    uniqueID: 1307134557
+    locked: 0
+  - name: Emoji Piece
+    uniqueID: 3733765419
+    locked: 0

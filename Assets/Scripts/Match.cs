@@ -8,7 +8,7 @@ public class Match : MonoBehaviour
     [SerializeField] private Hand _hand;
     [SerializeField] private GameObject _dragObjectsRoot;
 
-    [Header("Match Settings")]    
+    [Header("Match Settings")]
     [SerializeField] private int _maxScore = 100;
     [SerializeField] private int _timeLimit = 10; // time limit in seconds
     [SerializeField] private Color _countdownColorText = Color.white;
@@ -22,9 +22,6 @@ public class Match : MonoBehaviour
 
     [Header("General Animation")]
     [SerializeField] private TMPro.TMP_Text _matchStateDescriptor;
-    [SerializeField, Range(1f, 5f)] private float _fadeMaxTime = 1f;
-    [SerializeField] private SpriteRenderer _fadeSprite;
-    [SerializeField] private DeltaTimeType _fadeDeltaTimeType;
 
     [Header("Ready Animation")]
     [SerializeField] private Color _readyColorText = Color.white;
@@ -50,20 +47,32 @@ public class Match : MonoBehaviour
     [SerializeField, Range(0.05f, 0.15f)] private float _scoreIncrementTime = 0.05f;
     [SerializeField, Range(1f, 5f)] private float _scoreMaxAnimationTime = 1f;
 
+    [Header("Player Events")]
+    [SerializeField] private FinishMatchEvent _finishMatch;
+
     private List<GameObject> _slots = new List<GameObject>();
     private List<GameObject> _emojiPieces = new List<GameObject>();
-    private int currentScore = 0;    
 
-    protected virtual void OnEnable()
-    {
-        Begin();
-    }
-
-    public virtual void Begin()
+    public virtual void Begin(int currentMatch)
     {
         BuildMatch();
-        //_timeLimit = timeLimit;
         StartCoroutine(ShowReadySetGo());
+    }
+
+    public void Cleanup()
+    {
+        // Destroy all children
+        for (int i = 0; i < _emojiRoot.childCount; i++)
+        {
+            Transform t = _emojiRoot.GetChild(i);
+            Destroy(t.gameObject);
+        }
+
+        for (int i = 0; i < _emojiPiecesRoot.childCount; i++)
+        {
+            Transform t = _emojiPiecesRoot.GetChild(i);
+            Destroy(t.gameObject);
+        }
     }
 
     private void BuildMatch()
@@ -89,11 +98,6 @@ public class Match : MonoBehaviour
     private IEnumerator ShowReadySetGo()
     {
         _matchStateDescriptor.text = string.Empty;
-
-        // Fade Sprite
-        yield return StartCoroutine(Fade(1f, 0f));
-
-        _fadeSprite.enabled = false;
         _matchStateDescriptor.enabled = true;
 
         // Show Ready
@@ -164,37 +168,19 @@ public class Match : MonoBehaviour
         _matchStateDescriptor.color = _finishColorText;
         yield return new WaitForSeconds(_finishMaxTime);
 
-
-        //_matchStateDescriptor.enabled = false;
         int finalScore = CalculateScore();
 
         for (int score = 0; score <= finalScore; score++)
         {
             _matchStateDescriptor.text = score.ToString();
             yield return new WaitForSeconds(_scoreIncrementTime);
-        }        
+        }
 
         yield return new WaitForSeconds(_scoreMaxAnimationTime);
         _matchStateDescriptor.text = string.Empty;
         _matchStateDescriptor.enabled = false;
 
-        yield return StartCoroutine(Fade(0f, 1f));
-
-        SceneManager.LoadScene(0);
-    }
-
-    private IEnumerator Fade(float alphaStart, float alphaEnd)
-    {
-        // Fade Sprite
-        _fadeSprite.enabled = true;
-        for (float time = 0; time < _fadeMaxTime; time += Utils.GetDeltaTime(_fadeDeltaTimeType))
-        {
-            float fadeAlpha = Mathf.Lerp(alphaStart, alphaEnd, time / _fadeMaxTime);
-            Color fadeSpriteColor = _fadeSprite.color;
-            fadeSpriteColor.a = fadeAlpha;
-            _fadeSprite.color = fadeSpriteColor;
-            yield return null;
-        }
+        _finishMatch?.Invoke(this, finalScore);
     }
 
     private int CalculateScore()
@@ -240,5 +226,15 @@ public class Match : MonoBehaviour
 
         int finalScore = Mathf.CeilToInt(totalScoreForAllSlots / _slots.Count);
         return finalScore;
+    }
+
+    public void AddGameListener(Game game)
+    {
+        _finishMatch.AddListener(game.OnEndMatch);
+    }
+
+    public void RemoveGameListener(Game game)
+    {
+        _finishMatch.RemoveListener(game.OnEndMatch);
     }
 }

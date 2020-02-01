@@ -49,11 +49,11 @@ public class Hand : MonoBehaviour
         string submitButtonName = string.Format("Submit {0}", (int)_playerIndex);
         if (Input.GetButtonDown(submitButtonName))
         {
-            _hold.Invoke(this);
+            _hold?.Invoke(this);
         }
         else if (Input.GetButtonUp(submitButtonName))
         {
-            _release.Invoke(this);
+            _release?.Invoke(this);
         }
     }
 

@@ -204,6 +204,73 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1265859780
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1265859781}
+  - component: {fileID: 1265859782}
+  m_Layer: 0
+  m_Name: Game
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1265859781
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265859780}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1265859782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265859780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94ffba519207e0b4891c12226f4b8ae7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _matches:
+  - {fileID: 2072652749}
+  _bestOf: 2
+  _fadeMaxTime: 1
+  _fadeSprite: {fileID: 1754828309}
+  _fadeDeltaTimeType: 2
+--- !u!212 &1754828309 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3866861144809459815, guid: 684605d04514fde409ef43feb5662218,
+    type: 3}
+  m_PrefabInstance: {fileID: 3866861145665817893}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2072652749 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3866861145592967836, guid: 684605d04514fde409ef43feb5662218,
+    type: 3}
+  m_PrefabInstance: {fileID: 3866861145665817893}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff5df2db6f68844f8d6b43ec38ccdb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3866861145665817893
 PrefabInstance:
   m_ObjectHideFlags: 0

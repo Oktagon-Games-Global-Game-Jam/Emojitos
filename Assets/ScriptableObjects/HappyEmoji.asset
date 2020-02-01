@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d0948ad79e8730438393d4e246ce67c, type: 3}
+  m_Name: HappyEmoji
+  m_EditorClassIdentifier: 
+  _emojiPrefab: {fileID: 3174883180971102055, guid: caa24b8b791487d41ae8427d80d50eed,
+    type: 3}
+  _emojiPiecePrefabs:
+  - {fileID: 4009349298585794453, guid: f2c00c85e752caf4db725a991c20c806, type: 3}
+  - {fileID: 4009349298585794453, guid: f2c00c85e752caf4db725a991c20c806, type: 3}
+  - {fileID: 3023419582376289201, guid: c54ef25bde09d6a4e838a27ac295740a, type: 3}

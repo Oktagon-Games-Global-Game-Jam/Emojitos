@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Match : MonoBehaviour
@@ -7,7 +8,12 @@ public class Match : MonoBehaviour
     [SerializeField] private GameObject _dragObjectsRoot;
     [SerializeField] private int _timeLimit = 10; // time limit in seconds
     [SerializeField] private Color _countdownColorText = Color.white;
-    [SerializeField] private int _finalCountdown = 3; // time limit in seconds
+    [SerializeField] private int _finalCountdown = 3; // countdown in seconds
+
+    [Header("Emoji Builder")]
+    [SerializeField] private EmojiData _emojiData;
+    [SerializeField] private Transform _emojiRoot;
+    [SerializeField] private Transform _emojiPiecesRoot;
 
     [Header("General Animation")]
     [SerializeField] private TMPro.TMP_Text _matchStateDescriptor;
@@ -33,7 +39,10 @@ public class Match : MonoBehaviour
     [Header("Finish Animation")]
     [SerializeField] private Color _finishColorText = Color.white;
     [SerializeField] private string _finishText = "Finish!";
-    [SerializeField, Range(1f, 5f)] private float _finishMaxTime = 0.5f;    
+    [SerializeField, Range(1f, 5f)] private float _finishMaxTime = 0.5f;
+
+    private List<GameObject> _slots = new List<GameObject>();
+    private List<GameObject> _emojiPieces = new List<GameObject>();
 
     protected virtual void OnEnable()
     {
@@ -42,8 +51,29 @@ public class Match : MonoBehaviour
 
     public virtual void Begin()
     {
+        BuildMatch();
         //_timeLimit = timeLimit;
         StartCoroutine(ShowReadySetGo());
+    }
+
+    private void BuildMatch()
+    {
+        GameObject emoji = Instantiate(_emojiData.EmojiPrefab, _emojiRoot);
+        BoxCollider2D[] slotColliders = emoji.GetComponentsInChildren<BoxCollider2D>();
+
+        _slots.Clear();
+        for (int i = 0; i < slotColliders.Length; i++)
+        {
+            _slots.Add(slotColliders[i].gameObject);
+        }
+
+        _emojiPieces.Clear();
+        foreach (var emojiPiece in _emojiData.EmojiPiecePrefabs)
+        {
+            GameObject emojiPieceGO = Instantiate(emojiPiece.gameObject, _emojiPiecesRoot);
+            _emojiPieces.Add(emojiPieceGO);
+            emojiPieceGO.SetActive(false);
+        }
     }
 
     private IEnumerator ShowReadySetGo()
@@ -65,6 +95,18 @@ public class Match : MonoBehaviour
         _matchStateDescriptor.text = _setText;
         _matchStateDescriptor.color = _setColorText;
         yield return new WaitForSeconds(_setMaxTime);
+
+        // Hide/Show Emoji Pieces
+        foreach (var slot in _slots)
+        {
+            SpriteRenderer slotRenderer = slot.GetComponentInChildren<SpriteRenderer>();
+            slotRenderer.enabled = false;
+        }
+        
+        foreach (var emojiPiece in _emojiPieces)
+        {
+            emojiPiece.SetActive(true);
+        }
 
         // Show Go
         _matchStateDescriptor.text = _goText;

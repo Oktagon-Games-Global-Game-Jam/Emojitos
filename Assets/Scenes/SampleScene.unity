@@ -624,6 +624,12 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3252291492553868958, guid: 3ac781dff067e124aab4b72e46da774c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c9f2c3e0341ced0459abc0b104bed3ed,
+        type: 3}
     - target: {fileID: 3252291492697082128, guid: 3ac781dff067e124aab4b72e46da774c,
         type: 3}
       propertyPath: m_LocalPosition.x

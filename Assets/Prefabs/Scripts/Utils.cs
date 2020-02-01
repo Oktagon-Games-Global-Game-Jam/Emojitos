@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public enum DeltaTimeType
 {
@@ -38,3 +39,6 @@ public class Utils
         return 1f;
     }
 }
+
+[System.Serializable]
+public class GameObjectEvent : UnityEvent<GameObject> { }

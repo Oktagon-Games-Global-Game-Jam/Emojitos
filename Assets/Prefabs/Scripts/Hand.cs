@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class Hand : MonoBehaviour
 {
@@ -16,7 +17,9 @@ public class Hand : MonoBehaviour
     [SerializeField] private Vector2 _verticalBounds;
     [SerializeField] private Vector2 _centerBounds;
 
-    private Vector2 _handStartPosition;
+    [Header("Player Events")]
+    [SerializeField] private GameObjectEvent _hold;
+    [SerializeField] private GameObjectEvent _release;
 
     protected virtual void OnEnable()
     {
@@ -27,7 +30,6 @@ public class Hand : MonoBehaviour
     protected virtual void Update()
     {
         // move hand
-        string[] joysticks = Input.GetJoystickNames();
         string horizontalAxisName = string.Format("Horizontal {0}", (int)_playerIndex);
         string verticalAxisName = string.Format("Vertical {0}", (int)_playerIndex);
         float horizontalAxis = Input.GetAxisRaw(horizontalAxisName) * _horizontalSensibility;
@@ -40,5 +42,17 @@ public class Hand : MonoBehaviour
         position.x = Mathf.Clamp(position.x, _horizontalBounds.x + _centerBounds.x, _horizontalBounds.y + _centerBounds.x);
         position.y = Mathf.Clamp(position.y, _verticalBounds.x + _centerBounds.y, _verticalBounds.y + _centerBounds.y);
         transform.position = position;
+
+        string submitButtonName = string.Format("Submit {0}", (int)_playerIndex);
+        if (Input.GetButtonDown(submitButtonName))
+        {
+            _hold.Invoke(gameObject);
+            Debug.Log("hold");
+        }
+        else if (Input.GetButtonUp(submitButtonName))
+        {
+            _release.Invoke(gameObject);
+            Debug.Log("release");
+        }
     }
 }

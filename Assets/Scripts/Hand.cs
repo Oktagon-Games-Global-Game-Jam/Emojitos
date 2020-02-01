@@ -21,10 +21,13 @@ public class Hand : MonoBehaviour
     [SerializeField] private HandEvent _hold;
     [SerializeField] private HandEvent _release;
 
+    public int? CurrentDragInstance = null;
+
     protected virtual void OnEnable()
     {
         int playerNumber = ((int)_playerIndex) + 1;
         _playerName.text = string.Concat("P", playerNumber.ToString());
+        CurrentDragInstance = null;
     }
 
     protected virtual void Update()

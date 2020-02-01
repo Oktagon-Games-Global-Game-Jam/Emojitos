@@ -23,14 +23,16 @@ public class Drag : MonoBehaviour
         Vector2 cursorPosition = Vector2.zero;
         cursorPosition.x = hand.transform.position.x;
         cursorPosition.y = hand.transform.position.y;
-        if (_collider2D.OverlapPoint(cursorPosition))
+        if (_collider2D.OverlapPoint(cursorPosition) && !hand.CurrentDragInstance.HasValue)
         {
             _cursor = hand;
             _cursorLastPosition = cursorPosition;
+
+            hand.CurrentDragInstance = GetInstanceID();
         }
         else
         {
-            _cursor = null;
+            OnCursorEndDrag(hand);
             _cursorLastPosition = null;
         }
     }
@@ -54,5 +56,10 @@ public class Drag : MonoBehaviour
     public void OnCursorEndDrag(Hand hand)
     {
         _cursor = null;
+
+        if (hand.CurrentDragInstance == GetInstanceID())
+        {
+            hand.CurrentDragInstance = null;
+        }
     }
 }

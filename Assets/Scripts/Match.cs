@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Match : MonoBehaviour
 {
@@ -157,6 +158,8 @@ public class Match : MonoBehaviour
         _matchStateDescriptor.enabled = false;
         _matchStateDescriptor.text = string.Empty;
         yield return StartCoroutine(Fade(0f, 1f));
+
+        //SceneManager.LoadScene(0);
     }
 
     private IEnumerator Fade(float alphaStart, float alphaEnd)

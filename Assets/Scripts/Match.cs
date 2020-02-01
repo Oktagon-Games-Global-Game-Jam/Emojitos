@@ -6,6 +6,7 @@ public class Match : MonoBehaviour
     [SerializeField] private Hand _hand;
     [SerializeField] private GameObject _dragObjectsRoot;
     [SerializeField] private int _timeLimit = 10; // time limit in seconds
+    [SerializeField] private Color _countdownColorText = Color.white;
     [SerializeField] private int _finalCountdown = 3; // time limit in seconds
 
     [Header("General Animation")]
@@ -15,18 +16,22 @@ public class Match : MonoBehaviour
     [SerializeField] private DeltaTimeType _fadeDeltaTimeType;
 
     [Header("Ready Animation")]
+    [SerializeField] private Color _readyColorText = Color.white;
     [SerializeField] private string _readyText = "Ready!";
     [SerializeField, Range(1f, 5f)] private float _readyMaxTime = 1f;
 
     [Header("Set Animation")]
+    [SerializeField] private Color _setColorText = Color.white;
     [SerializeField] private string _setText = "Ready!";
     [SerializeField, Range(1f, 5f)] private float _setMaxTime = 1f;
 
     [Header("Go Animation")]
+    [SerializeField] private Color _goColorText = Color.white;
     [SerializeField] private string _goText = "Ready!";
     [SerializeField, Range(1f, 5f)] private float _goMaxTime = 0.5f;
 
     [Header("Finish Animation")]
+    [SerializeField] private Color _finishColorText = Color.white;
     [SerializeField] private string _finishText = "Finish!";
     [SerializeField, Range(1f, 5f)] private float _finishMaxTime = 0.5f;    
 
@@ -53,14 +58,17 @@ public class Match : MonoBehaviour
 
         // Show Ready
         _matchStateDescriptor.text = _readyText;
+        _matchStateDescriptor.color = _readyColorText;
         yield return new WaitForSeconds(_readyMaxTime);
 
         // Show Set
         _matchStateDescriptor.text = _setText;
+        _matchStateDescriptor.color = _setColorText;
         yield return new WaitForSeconds(_setMaxTime);
 
         // Show Go
         _matchStateDescriptor.text = _goText;
+        _matchStateDescriptor.color = _goColorText;
         yield return new WaitForSeconds(_goMaxTime);
 
         _matchStateDescriptor.text = string.Empty;
@@ -81,6 +89,7 @@ public class Match : MonoBehaviour
 
         // show countdown
         _matchStateDescriptor.enabled = true;
+        _matchStateDescriptor.color = _countdownColorText;
         for (int second = _finalCountdown; second > 0; second--)
         {
             _matchStateDescriptor.text = second.ToString();
@@ -100,7 +109,8 @@ public class Match : MonoBehaviour
     {
         _matchStateDescriptor.enabled = true;
         _matchStateDescriptor.text = _finishText;
-        yield return new WaitForSeconds(_finishMaxTime );        
+        _matchStateDescriptor.color = _finishColorText;
+        yield return new WaitForSeconds(_finishMaxTime);
 
         _matchStateDescriptor.enabled = false;
         _matchStateDescriptor.text = string.Empty;

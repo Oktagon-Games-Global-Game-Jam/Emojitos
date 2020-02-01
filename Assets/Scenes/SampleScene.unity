@@ -169,17 +169,22 @@ MonoBehaviour:
   _hand: {fileID: 846364935}
   _dragObjectsRoot: {fileID: 1957638320}
   _timeLimit: 10
+  _countdownColorText: {r: 0, g: 1, b: 0.6315789, a: 0.39215687}
   _finalCountdown: 3
   _matchStateDescriptor: {fileID: 610677653}
   _fadeMaxTime: 1
   _fadeSprite: {fileID: 856366402}
   _fadeDeltaTimeType: 2
+  _readyColorText: {r: 1, g: 0.1857836, b: 0, a: 1}
   _readyText: Ready!
   _readyMaxTime: 1
+  _setColorText: {r: 1, g: 0.7843138, b: 0.11372549, a: 1}
   _setText: Set!!
   _setMaxTime: 1
+  _goColorText: {r: 0, g: 1, b: 0.6315789, a: 1}
   _goText: Go!!!
   _goMaxTime: 0.5
+  _finishColorText: {r: 0, g: 1, b: 0.6315789, a: 1}
   _finishText: Finish!
   _finishMaxTime: 1.5
 --- !u!1001 &132146414

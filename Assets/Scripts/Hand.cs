@@ -55,4 +55,16 @@ public class Hand : MonoBehaviour
             Debug.Log("release");
         }
     }
+
+    public void AddDragListener(Drag drag)
+    {
+        _hold.AddListener(drag.OnCursorStartDrag);
+        _release.AddListener(drag.OnCursorEndDrag);
+    }
+
+    public void RemoveDragListener(Drag drag)
+    {
+        _hold.RemoveListener(drag.OnCursorStartDrag);
+        _release.RemoveListener(drag.OnCursorEndDrag);
+    }
 }

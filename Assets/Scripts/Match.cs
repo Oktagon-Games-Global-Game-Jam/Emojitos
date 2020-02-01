@@ -7,9 +7,13 @@ public class Match : MonoBehaviour
 {
     [SerializeField] private Hand _hand;
     [SerializeField] private GameObject _dragObjectsRoot;
+
+    [Header("Match Settings")]    
+    [SerializeField] private int _maxScore = 100;
     [SerializeField] private int _timeLimit = 10; // time limit in seconds
     [SerializeField] private Color _countdownColorText = Color.white;
     [SerializeField] private int _finalCountdown = 3; // countdown in seconds
+    [SerializeField, Range(0.5f, 3f)] private float _minDistanceToSlot = 3f;
 
     [Header("Emoji Builder")]
     [SerializeField] private EmojiData _emojiData;
@@ -42,8 +46,13 @@ public class Match : MonoBehaviour
     [SerializeField] private string _finishText = "Finish!";
     [SerializeField, Range(1f, 5f)] private float _finishMaxTime = 0.5f;
 
+    [Header("Score Animation")]
+    [SerializeField, Range(0.05f, 0.15f)] private float _scoreIncrementTime = 0.05f;
+    [SerializeField, Range(1f, 5f)] private float _scoreMaxAnimationTime = 1f;
+
     private List<GameObject> _slots = new List<GameObject>();
     private List<GameObject> _emojiPieces = new List<GameObject>();
+    private int currentScore = 0;    
 
     protected virtual void OnEnable()
     {
@@ -98,11 +107,11 @@ public class Match : MonoBehaviour
         yield return new WaitForSeconds(_setMaxTime);
 
         // Hide/Show Emoji Pieces
-        foreach (var slot in _slots)
-        {
-            SpriteRenderer slotRenderer = slot.GetComponentInChildren<SpriteRenderer>();
-            slotRenderer.enabled = false;
-        }
+        //foreach (var slot in _slots)
+        //{
+        //    SpriteRenderer slotRenderer = slot.GetComponentInChildren<SpriteRenderer>();
+        //    slotRenderer.enabled = false;
+        //}
         
         foreach (var emojiPiece in _emojiPieces)
         {
@@ -155,11 +164,23 @@ public class Match : MonoBehaviour
         _matchStateDescriptor.color = _finishColorText;
         yield return new WaitForSeconds(_finishMaxTime);
 
-        _matchStateDescriptor.enabled = false;
+
+        //_matchStateDescriptor.enabled = false;
+        int finalScore = CalculateScore();
+
+        for (int score = 0; score <= finalScore; score++)
+        {
+            _matchStateDescriptor.text = score.ToString();
+            yield return new WaitForSeconds(_scoreIncrementTime);
+        }        
+
+        yield return new WaitForSeconds(_scoreMaxAnimationTime);
         _matchStateDescriptor.text = string.Empty;
+        _matchStateDescriptor.enabled = false;
+
         yield return StartCoroutine(Fade(0f, 1f));
 
-        //SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);
     }
 
     private IEnumerator Fade(float alphaStart, float alphaEnd)
@@ -174,5 +195,45 @@ public class Match : MonoBehaviour
             _fadeSprite.color = fadeSpriteColor;
             yield return null;
         }
+    }
+
+    private int CalculateScore()
+    {
+        List<GameObject> emojiPiecesCopy = new List<GameObject>();
+        emojiPiecesCopy.AddRange(_emojiPieces);
+
+        float totalScoreForAllSlots = 0f;
+        foreach (var slot in _slots)
+        {
+            GameObject bestEmojiPlaceScore = null;
+            float maxScoreForSlot = 0;
+            foreach (var emojiPiece in emojiPiecesCopy)
+            {
+                // Get the emoji piece with the same name as the slot with the highest score
+                if (emojiPiece.CompareTag(slot.tag))
+                {                    
+                    float distance = Vector2.Distance(emojiPiece.transform.position, slot.transform.position);
+                    float scoreRatio = Mathf.InverseLerp(_minDistanceToSlot, 0f, distance);
+                    float scoreForSlot = scoreRatio * _maxScore;
+
+                    if (scoreForSlot > maxScoreForSlot)
+                    {
+                        bestEmojiPlaceScore = emojiPiece;
+                        maxScoreForSlot = scoreForSlot;
+                    }
+                }
+            }
+
+            totalScoreForAllSlots += maxScoreForSlot;
+
+            // Remove the best emoji from the list
+            if (bestEmojiPlaceScore != null)
+            {
+                emojiPiecesCopy.Remove(bestEmojiPlaceScore);
+            }
+        }
+
+        int finalScore = Mathf.CeilToInt(totalScoreForAllSlots / _slots.Count);
+        return finalScore;
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6149930950994463825}
   m_Layer: 0
   m_Name: 'Eye '
-  m_TagString: Slot
+  m_TagString: Eye
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 275329921807646174}
   m_Layer: 0
   m_Name: Eye
-  m_TagString: Slot
+  m_TagString: Eye
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 1773657144262824206}
   m_Layer: 0
   m_Name: Mouth
-  m_TagString: Slot
+  m_TagString: Mouth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

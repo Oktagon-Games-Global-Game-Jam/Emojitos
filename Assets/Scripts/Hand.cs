@@ -50,12 +50,10 @@ public class Hand : MonoBehaviour
         if (Input.GetButtonDown(submitButtonName))
         {
             _hold.Invoke(this);
-            Debug.Log("hold");
         }
         else if (Input.GetButtonUp(submitButtonName))
         {
             _release.Invoke(this);
-            Debug.Log("release");
         }
     }
 

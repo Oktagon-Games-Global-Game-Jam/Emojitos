@@ -226,6 +226,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Match
       objectReference: {fileID: 0}
+    - target: {fileID: 3866861145592967836, guid: 684605d04514fde409ef43feb5662218,
+        type: 3}
+      propertyPath: _minDistanceToSlot
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3866861145592967837, guid: 684605d04514fde409ef43feb5662218,
         type: 3}
       propertyPath: m_LocalPosition.x

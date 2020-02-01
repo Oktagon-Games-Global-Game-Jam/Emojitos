@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4009349298585794453}
   m_Layer: 0
   m_Name: Eye
-  m_TagString: Untagged
+  m_TagString: Eye
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

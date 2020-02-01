@@ -509,6 +509,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hand: {fileID: 3866861144829938722}
   _dragObjectsRoot: {fileID: 3866861143725505941}
+  _maxScore: 100
   _timeLimit: 10
   _countdownColorText: {r: 0, g: 1, b: 0.6315789, a: 0.39215687}
   _finalCountdown: 3
@@ -531,6 +532,9 @@ MonoBehaviour:
   _finishColorText: {r: 0, g: 1, b: 0.6315789, a: 1}
   _finishText: Finish!
   _finishMaxTime: 1.5
+  _scoreMaxAnimationTime: 5
+  _displayScoreMaxAnimationTime: 5
+  _scoreDeltaTimeType: 2
 --- !u!1001 &1768696776344552755
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -538,10 +542,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3866861145592967837}
     m_Modifications:
-    - target: {fileID: 135361347, guid: 3ac781dff067e124aab4b72e46da774c, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3252291492553868958, guid: 3ac781dff067e124aab4b72e46da774c,
         type: 3}
       propertyPath: m_Sprite
@@ -602,166 +602,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _hold.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _release.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _hold.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _hold.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _hold.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _hold.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _hold.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _hold.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _hold.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _hold.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: OnCursorStartDrag
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _hold.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _hold.m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _hold.m_PersistentCalls.m_Calls.Array.data[3].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _hold.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: OnCursorStartDrag
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _hold.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _hold.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: OnCursorStartDrag
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _hold.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _release.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _release.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _release.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _release.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _release.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _release.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _release.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _release.m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _release.m_PersistentCalls.m_Calls.Array.data[3].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _release.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: OnCursorEndDrag
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _release.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _release.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: OnCursorEndDrag
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _release.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _release.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: OnCursorEndDrag
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
-        type: 3}
-      propertyPath: _release.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3252291492697082131, guid: 3ac781dff067e124aab4b72e46da774c,
         type: 3}

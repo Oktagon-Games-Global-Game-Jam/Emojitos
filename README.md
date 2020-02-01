@@ -6,3 +6,4 @@
 + Matheus Funfas
 + Kenny Rafael
 + [Youri Theodora Kopoulos Kirchner Mattar](https://github.com/youhide)
++ Picko Johnny

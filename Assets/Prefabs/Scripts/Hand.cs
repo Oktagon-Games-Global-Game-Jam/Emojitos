@@ -11,6 +11,13 @@ public class Hand : MonoBehaviour
     [SerializeField] private JoystickIndex _playerIndex = 0;
     [SerializeField] private TMPro.TMP_Text _playerName;
 
+    [Header("Player Movement Bounds")]
+    [SerializeField] private Vector2 _horizontalBounds;
+    [SerializeField] private Vector2 _verticalBounds;
+    [SerializeField] private Vector2 _centerBounds;
+
+    private Vector2 _handStartPosition;
+
     protected virtual void OnEnable()
     {
         int playerNumber = ((int)_playerIndex) + 1;
@@ -19,6 +26,7 @@ public class Hand : MonoBehaviour
 
     protected virtual void Update()
     {
+        // move hand
         string[] joysticks = Input.GetJoystickNames();
         string horizontalAxisName = string.Format("Horizontal {0}", (int)_playerIndex);
         string verticalAxisName = string.Format("Vertical {0}", (int)_playerIndex);
@@ -27,6 +35,10 @@ public class Hand : MonoBehaviour
         Vector2 handMovement = new Vector2(horizontalAxis, verticalAxis);
         transform.Translate(handMovement * Utils.GetDeltaTime(_deltaTimeType), Space.World);
 
-        Debug.LogFormat("Horizontal: [{0}], Vertical: [{1}], Input Movement: {2}", horizontalAxisName, verticalAxisName, handMovement);
+        // clamp hand
+        Vector2 position = transform.position;
+        position.x = Mathf.Clamp(position.x, _horizontalBounds.x + _centerBounds.x, _horizontalBounds.y + _centerBounds.x);
+        position.y = Mathf.Clamp(position.y, _verticalBounds.x + _centerBounds.y, _verticalBounds.y + _centerBounds.y);
+        transform.position = position;
     }
 }

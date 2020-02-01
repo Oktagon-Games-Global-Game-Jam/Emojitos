@@ -63,7 +63,7 @@ public class Game : MonoBehaviour
 
         if (_currentMatch < _bestOf)
         {            
-            yield return StartCoroutine(StartMatches());            
+            yield return StartCoroutine(StartMatches());
         }
     }
 

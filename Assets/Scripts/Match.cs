@@ -61,6 +61,9 @@ public class Match : MonoBehaviour
 
     public void Cleanup()
     {
+        _matchStateDescriptor.text = string.Empty;
+        _matchStateDescriptor.enabled = false;
+
         // Destroy all children
         for (int i = 0; i < _emojiRoot.childCount; i++)
         {
@@ -177,8 +180,8 @@ public class Match : MonoBehaviour
         }
 
         yield return new WaitForSeconds(_scoreMaxAnimationTime);
-        _matchStateDescriptor.text = string.Empty;
-        _matchStateDescriptor.enabled = false;
+        //_matchStateDescriptor.text = string.Empty;
+        //_matchStateDescriptor.enabled = false;
 
         _finishMatch?.Invoke(this, finalScore);
     }

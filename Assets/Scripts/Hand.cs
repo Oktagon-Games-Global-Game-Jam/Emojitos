@@ -68,4 +68,10 @@ public class Hand : MonoBehaviour
         _hold.RemoveListener(drag.OnCursorStartDrag);
         _release.RemoveListener(drag.OnCursorEndDrag);
     }
+
+    public string GetPlayerName()
+    {
+        int playerIndex = (int)_playerIndex;
+        return string.Format("Player {0}", playerIndex.ToString());
+    }
 }

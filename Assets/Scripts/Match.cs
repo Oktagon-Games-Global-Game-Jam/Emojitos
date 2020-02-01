@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Match : MonoBehaviour
 {
@@ -191,7 +190,7 @@ public class Match : MonoBehaviour
         //_matchStateDescriptor.text = string.Empty;
         //_matchStateDescriptor.enabled = false;
 
-        _finishMatch?.Invoke(this, finalScore);
+        _finishMatch?.Invoke(this, _hand.GetPlayerName(), finalScore);
     }
 
     private int CalculateScore()

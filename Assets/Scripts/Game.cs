@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Game : MonoBehaviour
@@ -8,6 +10,10 @@ public class Game : MonoBehaviour
     [Header("Game Settings")]
     [SerializeField] private int _bestOf = 10;
 
+    [Header("Result Settings")]
+    [SerializeField] private TMPro.TMP_Text _bestPlayerName;
+    [SerializeField] private TMPro.TMP_Text _bestPlayerScore;
+
     [Header("Fade Settings")]
     [SerializeField, Range(1f, 5f)] private float _fadeMaxTime = 1f;
     [SerializeField] private SpriteRenderer _fadeSprite;
@@ -15,6 +21,7 @@ public class Game : MonoBehaviour
 
     private int _currentMatch = 1;
     private int _finishedMatches = 0;
+    private Dictionary<string, int> _resultsDict = new Dictionary<string, int>();
 
     protected virtual void OnEnable()
     {
@@ -24,6 +31,7 @@ public class Game : MonoBehaviour
     private IEnumerator StartMatches()
     {
         _finishedMatches = 0;
+        _resultsDict.Clear();
 
         foreach (var match in _matches)
         {
@@ -41,30 +49,72 @@ public class Game : MonoBehaviour
         }
     }
 
-    public void OnEndMatch(Match match, int matchScore)
+    public void OnEndMatch(Match match, string playerName, int matchScore)
     {
         match.RemoveGameListener(this);
+
+        if (!_resultsDict.ContainsKey(playerName))
+        {
+            _resultsDict.Add(playerName, matchScore);
+        }
+        else
+        {
+            _resultsDict[playerName] += matchScore;
+        }
 
         _finishedMatches += 1;
 
         if (_finishedMatches >= _matches.Length)
         {
             StartCoroutine(LoopMatches());
-        }        
+        }
     }
 
     private IEnumerator LoopMatches()
     {
         yield return StartCoroutine(Fade(0f, 1f));
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
 
         _currentMatch += 1;
 
-        if (_currentMatch < _bestOf)
+        if (_currentMatch <= _bestOf)
         {            
             yield return StartCoroutine(StartMatches());
         }
+        else
+        {
+            foreach (var match in _matches)
+            {
+                match.Cleanup();
+            }
+
+            yield return StartCoroutine(Fade(1f, 0f));
+
+            _fadeSprite.enabled = false;
+
+            ShowResults();
+        }
+    }
+
+    private void ShowResults()
+    {
+        // get best player
+        string bestPlayer = string.Empty;
+        int bestScore = int.MinValue;
+        foreach (var item in _resultsDict)
+        {
+            if (item.Value > bestScore)
+            {
+                bestPlayer = item.Key;
+                bestScore = item.Value;
+            }
+        }
+
+        _bestPlayerName.gameObject.SetActive(true);
+        _bestPlayerName.text = string.Concat("WINNER", System.Environment.NewLine, bestPlayer);
+        _bestPlayerScore.gameObject.SetActive(true);
+        _bestPlayerScore.text = bestScore.ToString();
     }
 
     private IEnumerator Fade(float alphaStart, float alphaEnd)

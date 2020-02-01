@@ -44,4 +44,4 @@ public class Utils
 public class HandEvent : UnityEvent<Hand> { }
 
 [System.Serializable]
-public class FinishMatchEvent : UnityEvent<Match, int> { }
+public class FinishMatchEvent : UnityEvent<Match, string, int> { }

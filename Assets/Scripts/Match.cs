@@ -12,6 +12,7 @@ public class Match : MonoBehaviour
     [SerializeField] private int _maxScore = 100;
     [SerializeField] private int _timeLimit = 10; // time limit in seconds
     [SerializeField] private Color _countdownColorText = Color.white;
+    [SerializeField] private TMPro.TMP_Text _countdown;
     [SerializeField] private int _finalCountdown = 3; // countdown in seconds
     [SerializeField, Range(0.5f, 3f)] private float _minDistanceToSlot = 3f;
 
@@ -61,6 +62,7 @@ public class Match : MonoBehaviour
 
     public void Cleanup()
     {
+        _countdown.text = string.Empty;
         _matchStateDescriptor.text = string.Empty;
         _matchStateDescriptor.enabled = false;
 
@@ -144,7 +146,13 @@ public class Match : MonoBehaviour
             _hand.AddDragListener(drag);
         }
 
-        yield return new WaitForSeconds(_timeLimit - _finalCountdown);
+        _countdown.text = string.Empty;
+        for (int second = _timeLimit; second > _finalCountdown; second--)
+        {
+            _countdown.text = second.ToString();
+            yield return new WaitForSeconds(1f);
+        }
+        _countdown.text = string.Empty;
 
         // show countdown
         _matchStateDescriptor.enabled = true;

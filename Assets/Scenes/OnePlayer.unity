@@ -278,6 +278,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2139611879, guid: 684605d04514fde409ef43feb5662218, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1768696776211314288, guid: 684605d04514fde409ef43feb5662218,
         type: 3}
       propertyPath: m_Mesh
@@ -288,30 +292,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 3866861145064079037, guid: 684605d04514fde409ef43feb5662218,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 335027347
-      objectReference: {fileID: 0}
-    - target: {fileID: 3866861145064079037, guid: 684605d04514fde409ef43feb5662218,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 3866861145592967826, guid: 684605d04514fde409ef43feb5662218,
         type: 3}
       propertyPath: m_Name
       value: Match
-      objectReference: {fileID: 0}
-    - target: {fileID: 3866861145592967836, guid: 684605d04514fde409ef43feb5662218,
-        type: 3}
-      propertyPath: _minDistanceToSlot
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3866861145592967836, guid: 684605d04514fde409ef43feb5662218,
-        type: 3}
-      propertyPath: _scoreIncrementTime
-      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3866861145592967837, guid: 684605d04514fde409ef43feb5662218,
         type: 3}

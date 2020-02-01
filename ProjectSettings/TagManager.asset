@@ -47,3 +47,6 @@ TagManager:
   - name: Emoji Piece
     uniqueID: 3733765419
     locked: 0
+  - name: UI
+    uniqueID: 335027347
+    locked: 0

@@ -34,14 +34,14 @@ jobs:
 #         password: ${{ secrets.password }}
         mode: build
         build_method: BuildCommand.PerformBuild_Windows
-    - name: List Build Folder
+    - name: zip folder
       run: |
-        ls -la Build/
+        zip -r windows.zip Build
     - name: 'upload artifact'
       uses: actions/upload-artifact@v1.0.0
       with:
         name: windows.zip
-        path: Build/windows
+        path: windows.zip
 
 
   build-linux:

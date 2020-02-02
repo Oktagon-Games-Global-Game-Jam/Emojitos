@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 
 public class Hand : MonoBehaviour
 {
@@ -7,6 +6,8 @@ public class Hand : MonoBehaviour
     [SerializeField] private DeltaTimeType _deltaTimeType;
     [SerializeField, Range(1, 10)] private int _horizontalSensibility = 1;
     [SerializeField, Range(1, 10)] private int _verticalSensibility = 1;
+    //[SerializeField, Range(1, 50)] private int _horizontalMouseSensibility = 1;
+    //[SerializeField, Range(1, 50)] private int _verticalMouseSensibility = 1;
 
     [Header("Player Index")]
     [SerializeField] private JoystickIndex _playerIndex = 0;
@@ -35,19 +36,19 @@ public class Hand : MonoBehaviour
         // move hand with keyboard
         string horizontalAxisName = "Horizontal";
         string verticalAxisName = "Vertical";
-        float horizontalAxis = Input.GetAxisRaw(horizontalAxisName) * _horizontalSensibility;
-        float verticalAxis = Input.GetAxisRaw(verticalAxisName) * _verticalSensibility;
+        float horizontalAxis = Input.GetAxis(horizontalAxisName) * _horizontalSensibility;
+        float verticalAxis = Input.GetAxis(verticalAxisName) * _verticalSensibility;
         Vector2 handMovement = new Vector2(horizontalAxis, verticalAxis);
 
-        // move hand with mouse
-        if (Mathf.Approximately(handMovement.sqrMagnitude, 0f))
-        {
-            horizontalAxisName = "Mouse X"; 
-            verticalAxisName = "Mouse Y";
-            horizontalAxis = Input.GetAxisRaw(horizontalAxisName) * _horizontalSensibility;
-            verticalAxis = Input.GetAxisRaw(verticalAxisName) * _verticalSensibility;
-            handMovement = new Vector2(horizontalAxis, verticalAxis);
-        }
+        //// move hand with mouse
+        //if (Mathf.Approximately(handMovement.sqrMagnitude, 0f))
+        //{
+        //    horizontalAxisName = "Mouse X"; 
+        //    verticalAxisName = "Mouse Y";
+        //    horizontalAxis = Input.GetAxisRaw(horizontalAxisName) * _horizontalMouseSensibility;
+        //    verticalAxis = Input.GetAxisRaw(verticalAxisName) * _verticalMouseSensibility;
+        //    handMovement = new Vector2(horizontalAxis, verticalAxis);
+        //}
         transform.Translate(handMovement * Utils.GetDeltaTime(_deltaTimeType), Space.World);
 
         // clamp hand

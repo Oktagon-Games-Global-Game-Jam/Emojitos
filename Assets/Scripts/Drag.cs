@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Drag : MonoBehaviour
+public class Drag : MonoBehaviour, IInteractable
 {
     private Collider2D _collider2D;
     private Hand _cursor;

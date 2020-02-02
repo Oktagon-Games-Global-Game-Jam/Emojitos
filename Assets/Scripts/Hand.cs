@@ -32,12 +32,22 @@ public class Hand : MonoBehaviour
 
     protected virtual void Update()
     {
-        // move hand
-        string horizontalAxisName = "Horizontal"; // string.Format( {0}", (int)_playerIndex);
-        string verticalAxisName = "Vertical"; // string.Format("Vertical {0}", (int)_playerIndex);
+        // move hand with keyboard
+        string horizontalAxisName = "Horizontal";
+        string verticalAxisName = "Vertical";
         float horizontalAxis = Input.GetAxisRaw(horizontalAxisName) * _horizontalSensibility;
         float verticalAxis = Input.GetAxisRaw(verticalAxisName) * _verticalSensibility;
         Vector2 handMovement = new Vector2(horizontalAxis, verticalAxis);
+
+        // move hand with mouse
+        if (Mathf.Approximately(handMovement.sqrMagnitude, 0f))
+        {
+            horizontalAxisName = "Mouse X"; 
+            verticalAxisName = "Mouse Y";
+            horizontalAxis = Input.GetAxisRaw(horizontalAxisName) * _horizontalSensibility;
+            verticalAxis = Input.GetAxisRaw(verticalAxisName) * _verticalSensibility;
+            handMovement = new Vector2(horizontalAxis, verticalAxis);
+        }
         transform.Translate(handMovement * Utils.GetDeltaTime(_deltaTimeType), Space.World);
 
         // clamp hand
@@ -47,26 +57,26 @@ public class Hand : MonoBehaviour
         transform.position = position;
 
         string submitButtonName = "Submit";// string.Format("Submit {0}", (int)_playerIndex);
-        if (Input.GetButtonDown(submitButtonName))
+        if (Input.GetButtonDown(submitButtonName) || Input.GetMouseButtonDown(0))
         {
             _hold?.Invoke(this);
         }
-        else if (Input.GetButtonUp(submitButtonName))
+        else if (Input.GetButtonUp(submitButtonName) || Input.GetMouseButtonUp(0))
         {
             _release?.Invoke(this);
         }
     }
 
-    public void AddDragListener(Drag drag)
+    public void AddInteractableListener(IInteractable interactable)
     {
-        _hold.AddListener(drag.OnCursorStartDrag);
-        _release.AddListener(drag.OnCursorEndDrag);
+        _hold.AddListener(interactable.OnCursorStartDrag);
+        _release.AddListener(interactable.OnCursorEndDrag);
     }
 
-    public void RemoveDragListener(Drag drag)
+    public void RemoveInteractableListener(IInteractable interactable)
     {
-        _hold.RemoveListener(drag.OnCursorStartDrag);
-        _release.RemoveListener(drag.OnCursorEndDrag);
+        _hold.RemoveListener(interactable.OnCursorStartDrag);
+        _release.RemoveListener(interactable.OnCursorEndDrag);
     }
 
     public string GetPlayerName()

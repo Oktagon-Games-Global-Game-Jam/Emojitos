@@ -148,7 +148,7 @@ public class Match : MonoBehaviour
         Drag[] dragComponents = _dragObjectsRoot.GetComponentsInChildren<Drag>();
         foreach (Drag drag in dragComponents)
         {
-            _hand.AddDragListener(drag);
+            _hand.AddInteractableListener(drag);
         }
 
         _beginCountdown?.Invoke();
@@ -174,7 +174,7 @@ public class Match : MonoBehaviour
         foreach (Drag drag in dragComponents)
         {
             drag.OnCursorEndDrag(_hand);
-            _hand.RemoveDragListener(drag);
+            _hand.RemoveInteractableListener(drag);
         }
 
         yield return StartCoroutine(ShowFinish());

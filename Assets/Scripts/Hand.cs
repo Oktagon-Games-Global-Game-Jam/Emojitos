@@ -33,8 +33,8 @@ public class Hand : MonoBehaviour
     protected virtual void Update()
     {
         // move hand
-        string horizontalAxisName = string.Format("Horizontal {0}", (int)_playerIndex);
-        string verticalAxisName = string.Format("Vertical {0}", (int)_playerIndex);
+        string horizontalAxisName = "Horizontal"; // string.Format( {0}", (int)_playerIndex);
+        string verticalAxisName = "Vertical"; // string.Format("Vertical {0}", (int)_playerIndex);
         float horizontalAxis = Input.GetAxisRaw(horizontalAxisName) * _horizontalSensibility;
         float verticalAxis = Input.GetAxisRaw(verticalAxisName) * _verticalSensibility;
         Vector2 handMovement = new Vector2(horizontalAxis, verticalAxis);
@@ -46,7 +46,7 @@ public class Hand : MonoBehaviour
         position.y = Mathf.Clamp(position.y, _verticalBounds.x + _centerBounds.y, _verticalBounds.y + _centerBounds.y);
         transform.position = position;
 
-        string submitButtonName = string.Format("Submit {0}", (int)_playerIndex);
+        string submitButtonName = "Submit";// string.Format("Submit {0}", (int)_playerIndex);
         if (Input.GetButtonDown(submitButtonName))
         {
             _hold?.Invoke(this);

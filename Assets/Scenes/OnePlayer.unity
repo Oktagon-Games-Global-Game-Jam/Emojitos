@@ -133,6 +133,107 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1100052778
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 135361345, guid: 3ac781dff067e124aab4b72e46da774c, type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 135361345, guid: 3ac781dff067e124aab4b72e46da774c, type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 135361345, guid: 3ac781dff067e124aab4b72e46da774c, type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 135361345, guid: 3ac781dff067e124aab4b72e46da774c, type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 135361347, guid: 3ac781dff067e124aab4b72e46da774c, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252291492697082128, guid: 3ac781dff067e124aab4b72e46da774c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252291492697082128, guid: 3ac781dff067e124aab4b72e46da774c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252291492697082128, guid: 3ac781dff067e124aab4b72e46da774c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252291492697082128, guid: 3ac781dff067e124aab4b72e46da774c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252291492697082128, guid: 3ac781dff067e124aab4b72e46da774c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252291492697082128, guid: 3ac781dff067e124aab4b72e46da774c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252291492697082128, guid: 3ac781dff067e124aab4b72e46da774c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252291492697082128, guid: 3ac781dff067e124aab4b72e46da774c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252291492697082128, guid: 3ac781dff067e124aab4b72e46da774c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252291492697082128, guid: 3ac781dff067e124aab4b72e46da774c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252291492697082128, guid: 3ac781dff067e124aab4b72e46da774c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252291492697082131, guid: 3ac781dff067e124aab4b72e46da774c,
+        type: 3}
+      propertyPath: m_Name
+      value: Hand
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3ac781dff067e124aab4b72e46da774c, type: 3}
+--- !u!114 &1100052779 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3252291492697082129, guid: 3ac781dff067e124aab4b72e46da774c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1100052778}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c31b2e8e9c6c17742941175482f478c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1574830774 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5537244675645846556, guid: d7ee4a6d84347374fac7d878004ba956,
@@ -368,6 +469,11 @@ PrefabInstance:
       propertyPath: _matchCounter
       value: 
       objectReference: {fileID: 1574830774}
+    - target: {fileID: 3866861145592967836, guid: 684605d04514fde409ef43feb5662218,
+        type: 3}
+      propertyPath: _hand
+      value: 
+      objectReference: {fileID: 1100052779}
     - target: {fileID: 3866861145592967837, guid: 684605d04514fde409ef43feb5662218,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -31,7 +31,11 @@ public class Utils
     {
         if (Application.isPlaying)
         {
-            SceneManager.LoadScene(MainMenuScene);
+            Scene scene = SceneManager.GetActiveScene();
+            if (scene.buildIndex == StartScene)
+            {
+                SceneManager.LoadScene(MainMenuScene);
+            }
         }        
     }
 

@@ -1,5 +1,5 @@
-![Unity Build](https://github.com/Oktagon-Games-Global-Game-Jam/PatchUp/workflows/Unity%20Build/badge.svg)
-### PatchUp by High Artificer Team
+![Unity Build](https://github.com/Oktagon-Games-Global-Game-Jam/Emojitos/workflows/Unity%20Build/badge.svg)
+### Emojitos by High Artificer Team
 #### Global Game Jam (https://globalgamejam.org)
 
 #### Team Members:

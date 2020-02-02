@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
 
-  build:
+  build-macos:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -15,9 +15,46 @@ jobs:
 #         username: ${{ secrets.username }}
 #         password: ${{ secrets.password }}
         mode: build
-        build_method: BuildCommand.PerformBuild
+        build_method: BuildCommand.PerformBuild_OSx
     - name: 'upload artifact'
       uses: actions/upload-artifact@v1.0.0
       with:
-        name: build.tar.gz
+        name: os_x.tar.gz
         path: Build/os_x
+
+  build-windows:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: 'run unity build'
+      uses: ncipollo/unity-action@master
+      with: 
+        license: ${{ secrets.license }}
+#         username: ${{ secrets.username }}
+#         password: ${{ secrets.password }}
+        mode: build
+        build_method: BuildCommand.PerformBuild_Windows
+    - name: 'upload artifact'
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: windows.tar.gz
+        path: Build/windows
+
+
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: 'run unity build'
+      uses: ncipollo/unity-action@master
+      with: 
+        license: ${{ secrets.license }}
+#         username: ${{ secrets.username }}
+#         password: ${{ secrets.password }}
+        mode: build
+        build_method: BuildCommand.PerformBuild_Linux
+    - name: 'upload artifact'
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: linux.tar.gz
+        path: Build/linux

@@ -37,8 +37,8 @@ jobs:
     - name: 'upload artifact'
       uses: actions/upload-artifact@v1.0.0
       with:
-        name: windows.zip
-        path: Build/windows/
+        name: windows
+        path: Build/windows
 
 
   build-linux:

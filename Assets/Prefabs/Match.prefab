@@ -526,8 +526,8 @@ MonoBehaviour:
   _finishColorText: {r: 0, g: 1, b: 0.6315789, a: 1}
   _finishText: Finish!
   _finishMaxTime: 1.5
-  _scoreIncrementTime: 0.1
-  _scoreMaxAnimationTime: 1.5
+  _scoreIncrementTime: 0.05
+  _scoreMaxAnimationTime: 1
   _finishMatch:
     m_PersistentCalls:
       m_Calls: []

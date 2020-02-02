@@ -29,7 +29,7 @@ public static class BuildCommand {
         var options = new BuildPlayerOptions {
             locationPathName = "Build/windows",
             scenes = new[] { "Assets/Scenes/OnePlayer.unity" },
-            target = BuildTarget.StandaloneWindows
+            target = BuildTarget.StandaloneWindows64
         };
 
         var report = BuildPipeline.BuildPlayer(options);

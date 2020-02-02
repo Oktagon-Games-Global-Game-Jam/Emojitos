@@ -142,7 +142,7 @@ public class Game : MonoBehaviour
         }
 
         _bestPlayerName.gameObject.SetActive(true);
-        _bestPlayerName.text = string.Concat("WINNER", System.Environment.NewLine, bestPlayer);
+        _bestPlayerName.text = "Total Score"; // string.Concat("WINNER", System.Environment.NewLine, bestPlayer);
         _bestPlayerScore.gameObject.SetActive(true);
         _bestPlayerScore.text = bestScore.ToString();
 

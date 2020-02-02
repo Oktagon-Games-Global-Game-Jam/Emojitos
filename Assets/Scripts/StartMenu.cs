@@ -8,6 +8,8 @@ public class StartMenu : MonoBehaviour
 
     protected virtual void OnEnable()
     {
+        Cursor.visible = false;
+
         _hand.AddInteractableListener(_pressStartButton);
     }
 

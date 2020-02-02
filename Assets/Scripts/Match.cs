@@ -7,8 +7,9 @@ public class Match : MonoBehaviour
 {
     [SerializeField] private Hand _hand;
     [SerializeField] private GameObject _dragObjectsRoot;
+    [SerializeField] private AudioSource _audioSource;
 
-    [Header("Match Settings")]    
+    [Header("Match Settings")]
     [SerializeField] private Color _countdownColorText = Color.white;
     [SerializeField, Range(0.5f, 3f)] private float _minDistanceToSlot = 3f;
 
@@ -42,6 +43,7 @@ public class Match : MonoBehaviour
     [Header("Score Animation")]
     [SerializeField, Range(0.05f, 0.15f)] private float _scoreIncrementTime = 0.05f;
     [SerializeField, Range(1f, 5f)] private float _scoreMaxAnimationTime = 1f;
+    [SerializeField] private AudioClip _scoreClip;
 
     [Header("Game Events")]
     [SerializeField] private FinishMatchEvent _finishMatch;
@@ -163,13 +165,14 @@ public class Match : MonoBehaviour
         //_countdown.text = string.Empty;
 
         // show countdown
+        
         _matchStateDescriptor.enabled = true;
         _matchStateDescriptor.color = _countdownColorText;
         for (int second = _finalCountdown; second > 0; second--)
         {
             _matchStateDescriptor.text = second.ToString();
             yield return new WaitForSeconds(1f);
-        }
+        }        
 
         foreach (Drag drag in dragComponents)
         {
@@ -189,10 +192,16 @@ public class Match : MonoBehaviour
 
         int finalScore = CalculateScore();
 
-        for (int score = 0; score <= finalScore; score++)
+        if (finalScore > 0)
         {
-            _matchStateDescriptor.text = score.ToString();
-            yield return new WaitForSeconds(_scoreIncrementTime);
+            _audioSource.clip = _scoreClip;
+            _audioSource.Play();
+            for (int score = 0; score <= finalScore; score++)
+            {
+                _matchStateDescriptor.text = score.ToString();
+                yield return new WaitForSeconds(_scoreIncrementTime);
+            }
+            _audioSource.Stop();
         }
 
         yield return new WaitForSeconds(_scoreMaxAnimationTime);

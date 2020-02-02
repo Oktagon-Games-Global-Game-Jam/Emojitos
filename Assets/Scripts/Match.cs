@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Match : MonoBehaviour
 {
@@ -10,8 +11,7 @@ public class Match : MonoBehaviour
     [Header("Match Settings")]
     [SerializeField] private int _maxScore = 100;
     [SerializeField] private int _timeLimit = 10; // time limit in seconds
-    [SerializeField] private Color _countdownColorText = Color.white;
-    [SerializeField] private TMPro.TMP_Text _countdown;
+    [SerializeField] private Color _countdownColorText = Color.white;    
     [SerializeField] private int _finalCountdown = 3; // countdown in seconds
     [SerializeField, Range(0.5f, 3f)] private float _minDistanceToSlot = 3f;
 
@@ -47,21 +47,25 @@ public class Match : MonoBehaviour
     [SerializeField, Range(0.05f, 0.15f)] private float _scoreIncrementTime = 0.05f;
     [SerializeField, Range(1f, 5f)] private float _scoreMaxAnimationTime = 1f;
 
-    [Header("Player Events")]
+    [Header("Game Events")]
     [SerializeField] private FinishMatchEvent _finishMatch;
+    [SerializeField] private UnityEvent _beginCountdown;
+    [SerializeField] private UpdateCountdownEvent _updateCountdown;
+    [SerializeField] private UnityEvent _endCountdown;
 
     private List<GameObject> _slots = new List<GameObject>();
     private List<GameObject> _emojiPieces = new List<GameObject>();
 
-    public virtual void Begin(int currentMatch)
-    {
+    public virtual void Begin()
+    {        
         BuildMatch();
         StartCoroutine(ShowReadySetGo());
     }
 
     public void Cleanup()
     {
-        _countdown.text = string.Empty;
+        //_matchCounter.text = string.Empty;
+        //_countdown.text = string.Empty;
         _matchStateDescriptor.text = string.Empty;
         _matchStateDescriptor.enabled = false;
 
@@ -145,13 +149,16 @@ public class Match : MonoBehaviour
             _hand.AddDragListener(drag);
         }
 
-        _countdown.text = string.Empty;
+        _beginCountdown?.Invoke();
+        //_countdown.text = string.Empty;
         for (int second = _timeLimit; second > _finalCountdown; second--)
         {
-            _countdown.text = second.ToString();
+            _updateCountdown?.Invoke(second);
+            //_countdown.text = second.ToString();
             yield return new WaitForSeconds(1f);
         }
-        _countdown.text = string.Empty;
+        _endCountdown?.Invoke();
+        //_countdown.text = string.Empty;
 
         // show countdown
         _matchStateDescriptor.enabled = true;
@@ -238,13 +245,19 @@ public class Match : MonoBehaviour
         return finalScore;
     }
 
-    public void AddGameListener(Game game)
+    public void AddGameListeners(Game game)
     {
+        _beginCountdown.AddListener(game.CleanCountdown);
+        _endCountdown.AddListener(game.CleanCountdown);
+        _updateCountdown.AddListener(game.UpdateCountdown);
         _finishMatch.AddListener(game.OnEndMatch);
     }
 
-    public void RemoveGameListener(Game game)
+    public void RemoveGameListeners(Game game)
     {
+        _beginCountdown.RemoveListener(game.CleanCountdown);
+        _endCountdown.RemoveListener(game.CleanCountdown);
+        _updateCountdown.RemoveListener(game.UpdateCountdown);
         _finishMatch.RemoveListener(game.OnEndMatch);
     }
 }

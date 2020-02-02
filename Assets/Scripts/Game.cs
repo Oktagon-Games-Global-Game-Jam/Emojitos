@@ -22,6 +22,10 @@ public class Game : MonoBehaviour
     [SerializeField] private SpriteRenderer _fadeSprite;
     [SerializeField] private DeltaTimeType _fadeDeltaTimeType;
 
+    [Header("HUD Settings")]
+    [SerializeField] private TMPro.TMP_Text _matchCounter;
+    [SerializeField] private TMPro.TMP_Text _countdown;
+
     private int _currentMatch = 1;
     private int _finishedMatches = 0;
     private Dictionary<string, int> _resultsDict = new Dictionary<string, int>();
@@ -36,6 +40,8 @@ public class Game : MonoBehaviour
 
     private IEnumerator StartMatches()
     {
+        _matchCounter.text = string.Empty;
+
         foreach (var match in _matches)
         {
             match.Cleanup();
@@ -45,16 +51,18 @@ public class Game : MonoBehaviour
 
         _fadeSprite.enabled = false;
 
+        _matchCounter.text = string.Format("Match {0} of {1}", _currentMatch, _bestOf);
+
         foreach (var match in _matches)
         {
-            match.Begin(_currentMatch);
-            match.AddGameListener(this);
+            match.Begin();
+            match.AddGameListeners(this);
         }
     }
 
     public void OnEndMatch(Match match, string playerName, int matchScore)
     {
-        match.RemoveGameListener(this);
+        match.RemoveGameListeners(this);
 
         if (!_resultsDict.ContainsKey(playerName))
         {
@@ -73,6 +81,16 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void CleanCountdown()
+    {
+        _countdown.text = string.Empty;
+    }
+
+    public void UpdateCountdown(int countdown)
+    {
+        _countdown.text = countdown.ToString();
+    }
+
     private IEnumerator LoopMatches()
     {
         yield return StartCoroutine(Fade(0f, 1f));
@@ -87,6 +105,8 @@ public class Game : MonoBehaviour
         }
         else
         {
+            _matchCounter.text = string.Empty;
+
             foreach (var match in _matches)
             {
                 match.Cleanup();

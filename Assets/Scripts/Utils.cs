@@ -22,7 +22,7 @@ public enum JoystickIndex
 
 public class Utils
 {
-    public readonly static int StartGameScene = 0;
+    public readonly static int StartScene = 0;
     public readonly static int MainMenuScene = 1;
     public readonly static int OnePlayerScene = 2;
 
@@ -59,3 +59,12 @@ public class HandEvent : UnityEvent<Hand> { }
 
 [System.Serializable]
 public class FinishMatchEvent : UnityEvent<Match, string, int> { }
+
+//[System.Serializable]
+//public class BeginCountdownEvent : UnityEvent<int> { }
+
+[System.Serializable]
+public class UpdateCountdownEvent : UnityEvent<int> { }
+
+//[System.Serializable]
+//public class EndCountdownEvent : UnityEvent<int> { }

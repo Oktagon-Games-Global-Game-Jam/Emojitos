@@ -19,7 +19,7 @@ jobs:
     - name: 'upload artifact'
       uses: actions/upload-artifact@v1.0.0
       with:
-        name: os_x.tar.gz
+        name: os_x.zip
         path: Build/os_x
 
   build-windows:
@@ -37,7 +37,7 @@ jobs:
     - name: 'upload artifact'
       uses: actions/upload-artifact@v1.0.0
       with:
-        name: linux.tar.gz
+        name: windows.zip
         path: Build/windows
 
 
@@ -56,5 +56,5 @@ jobs:
     - name: 'upload artifact'
       uses: actions/upload-artifact@v1.0.0
       with:
-        name: linux.tar.gz
+        name: linux.zip
         path: Build/linux

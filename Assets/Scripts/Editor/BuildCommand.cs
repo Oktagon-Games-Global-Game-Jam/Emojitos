@@ -8,7 +8,7 @@ public static class BuildCommand {
     static void PerformBuild_OSx() {
         var options = new BuildPlayerOptions {
             locationPathName = "Build/os_x/game.app",
-            scenes = new[] { "Assets/Scenes/OnePlayer.unity" },
+            scenes = new[] { "Assets/Scenes/Start.unity" },
             target = BuildTarget.StandaloneOSX
         };
 
@@ -27,8 +27,8 @@ public static class BuildCommand {
     }
     static void PerformBuild_Windows() {
         var options = new BuildPlayerOptions {
-            locationPathName = "Build/windows",
-            scenes = new[] { "Assets/Scenes/OnePlayer.unity" },
+            locationPathName = "Build/windows.exe",
+            scenes = new[] { "Assets/Scenes/Start.unity" },
             target = BuildTarget.StandaloneWindows64
         };
 
@@ -48,7 +48,7 @@ public static class BuildCommand {
     static void PerformBuild_Linux() {
         var options = new BuildPlayerOptions {
             locationPathName = "Build/linux",
-            scenes = new[] { "Assets/Scenes/OnePlayer.unity" },
+            scenes = new[] { "Assets/Scenes/Start.unity" },
             target = BuildTarget.StandaloneLinux64
         };
 

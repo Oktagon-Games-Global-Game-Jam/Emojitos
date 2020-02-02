@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class Game : MonoBehaviour
 
     [Header("Game Settings")]
     [SerializeField] private int _bestOf = 10;
+    [SerializeField] private float _matchInterval = 1f;
+    [SerializeField] private float _showResultsMaxTime = 3f;
 
     [Header("Result Settings")]
     [SerializeField] private TMPro.TMP_Text _bestPlayerName;
@@ -74,7 +77,7 @@ public class Game : MonoBehaviour
     {
         yield return StartCoroutine(Fade(0f, 1f));
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(_matchInterval);
 
         _currentMatch += 1;
 
@@ -93,11 +96,11 @@ public class Game : MonoBehaviour
 
             _fadeSprite.enabled = false;
 
-            ShowResults();
+            yield return StartCoroutine(ShowResults());
         }
     }
 
-    private void ShowResults()
+    private IEnumerator ShowResults()
     {
         // get best player
         string bestPlayer = string.Empty;
@@ -115,6 +118,10 @@ public class Game : MonoBehaviour
         _bestPlayerName.text = string.Concat("WINNER", System.Environment.NewLine, bestPlayer);
         _bestPlayerScore.gameObject.SetActive(true);
         _bestPlayerScore.text = bestScore.ToString();
+
+        yield return new WaitForSeconds(_showResultsMaxTime);
+
+        SceneManager.LoadScene("StartGame");
     }
 
     private IEnumerator Fade(float alphaStart, float alphaEnd)

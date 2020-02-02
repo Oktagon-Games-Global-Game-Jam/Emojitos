@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &135361344
 RectTransform:
   m_ObjectHideFlags: 0
@@ -335,8 +335,6 @@ MonoBehaviour:
   _deltaTimeType: 2
   _horizontalSensibility: 8
   _verticalSensibility: 8
-  _horizontalMouseSensibility: 45
-  _verticalMouseSensibility: 45
   _playerIndex: 0
   _playerName: {fileID: 135361345}
   _horizontalBounds: {x: -8.5, y: 8.5}

@@ -29,7 +29,10 @@ public class Utils
     [RuntimeInitializeOnLoadMethod]
     private static void OnRuntimeMethoadLoad()
     {
-        SceneManager.LoadScene(MainMenuScene);
+        if (Application.isPlaying)
+        {
+            SceneManager.LoadScene(MainMenuScene);
+        }        
     }
 
     public static float GetDeltaTime(DeltaTimeType deltaTimeType)

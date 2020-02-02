@@ -129,7 +129,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3866861144809459812
 Transform:
   m_ObjectHideFlags: 0
@@ -509,14 +509,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hand: {fileID: 3866861144829938722}
   _dragObjectsRoot: {fileID: 3866861143725505941}
-  _maxScore: 100
-  _timeLimit: 10
   _countdownColorText: {r: 0, g: 1, b: 0.6315789, a: 0.39215687}
-  _matchCounter: {fileID: 0}
-  _countdown: {fileID: 0}
-  _finalCountdown: 3
   _minDistanceToSlot: 1
-  _emojiData: {fileID: 11400000, guid: 59b85f325b042174e8e6cb6d31fb7701, type: 2}
   _emojiRoot: {fileID: 3866861145437254194}
   _emojiPiecesRoot: {fileID: 3866861145249577701}
   _matchStateDescriptor: {fileID: 3866861145064079024}
@@ -535,6 +529,15 @@ MonoBehaviour:
   _scoreIncrementTime: 0.1
   _scoreMaxAnimationTime: 1.5
   _finishMatch:
+    m_PersistentCalls:
+      m_Calls: []
+  _beginCountdown:
+    m_PersistentCalls:
+      m_Calls: []
+  _updateCountdown:
+    m_PersistentCalls:
+      m_Calls: []
+  _endCountdown:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1001 &1768696776344552755

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0948ad79e8730438393d4e246ce67c, type: 3}
   m_Name: HappiestEmoji
   m_EditorClassIdentifier: 
-  _emojiPrefab: {fileID: 3174883180971102055, guid: caa24b8b791487d41ae8427d80d50eed,
+  _emojiPrefab: {fileID: 3174883180971102055, guid: 4c657e7ebc5c55f4087892438e5da373,
     type: 3}
   _emojiPiecePrefabs:
   - {fileID: 4009349298585794453, guid: e611ff6b7a5b0a446bf1da0993fd73f8, type: 3}

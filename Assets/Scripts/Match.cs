@@ -8,15 +8,11 @@ public class Match : MonoBehaviour
     [SerializeField] private Hand _hand;
     [SerializeField] private GameObject _dragObjectsRoot;
 
-    [Header("Match Settings")]
-    [SerializeField] private int _maxScore = 100;
-    [SerializeField] private int _timeLimit = 10; // time limit in seconds
-    [SerializeField] private Color _countdownColorText = Color.white;    
-    [SerializeField] private int _finalCountdown = 3; // countdown in seconds
+    [Header("Match Settings")]    
+    [SerializeField] private Color _countdownColorText = Color.white;
     [SerializeField, Range(0.5f, 3f)] private float _minDistanceToSlot = 3f;
 
-    [Header("Emoji Builder")]
-    [SerializeField] private EmojiData _emojiData;
+    [Header("Emoji Builder")]    
     [SerializeField] private Transform _emojiRoot;
     [SerializeField] private Transform _emojiPiecesRoot;
 
@@ -55,10 +51,12 @@ public class Match : MonoBehaviour
 
     private List<GameObject> _slots = new List<GameObject>();
     private List<GameObject> _emojiPieces = new List<GameObject>();
+    private int _maxScore;
+    private int _timeLimit; // time limit in seconds
+    private int _finalCountdown; // countdown in seconds
 
     public virtual void Begin()
     {        
-        BuildMatch();
         StartCoroutine(ShowReadySetGo());
     }
 
@@ -83,9 +81,13 @@ public class Match : MonoBehaviour
         }
     }
 
-    private void BuildMatch()
+    public void BuildMatch(EmojiData emojiData, int maxScore, int timeLimit, int finalCountdown)
     {
-        GameObject emoji = Instantiate(_emojiData.EmojiPrefab, _emojiRoot);
+        _maxScore = maxScore;
+        _timeLimit = timeLimit;
+        _finalCountdown = finalCountdown;
+
+        GameObject emoji = Instantiate(emojiData.EmojiPrefab, _emojiRoot);
         BoxCollider2D[] slotColliders = emoji.GetComponentsInChildren<BoxCollider2D>();
 
         _slots.Clear();
@@ -95,7 +97,7 @@ public class Match : MonoBehaviour
         }
 
         _emojiPieces.Clear();
-        foreach (var emojiPiece in _emojiData.EmojiPiecePrefabs)
+        foreach (var emojiPiece in emojiData.EmojiPiecePrefabs)
         {
             GameObject emojiPieceGO = Instantiate(emojiPiece.gameObject, _emojiPiecesRoot);
             _emojiPieces.Add(emojiPieceGO);

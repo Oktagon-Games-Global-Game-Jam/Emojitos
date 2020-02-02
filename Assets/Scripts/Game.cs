@@ -12,6 +12,10 @@ public class Game : MonoBehaviour
     [SerializeField] private int _bestOf = 10;
     [SerializeField] private float _matchInterval = 1f;
     [SerializeField] private float _showResultsMaxTime = 3f;
+    [SerializeField] private int _maxScore = 100;
+    [SerializeField] private int _timeLimit = 10; // time limit in seconds
+    [SerializeField] private int _finalCountdown = 3; // countdown in seconds
+    [SerializeField] private EmojiData[] _emojiDatas;
 
     [Header("Result Settings")]
     [SerializeField] private TMPro.TMP_Text _bestPlayerName;
@@ -42,9 +46,12 @@ public class Game : MonoBehaviour
     {
         _matchCounter.text = string.Empty;
 
+        int randomIndex = UnityEngine.Random.Range(0, _emojiDatas.Length);
+        EmojiData randomEmojiData = _emojiDatas[randomIndex];
         foreach (var match in _matches)
         {
             match.Cleanup();
+            match.BuildMatch(randomEmojiData, _maxScore, _timeLimit, _finalCountdown);
         }
 
         yield return StartCoroutine(Fade(1f, 0f));
@@ -52,7 +59,7 @@ public class Game : MonoBehaviour
         _fadeSprite.enabled = false;
 
         _matchCounter.text = string.Format("Match {0} of {1}", _currentMatch, _bestOf);
-
+        
         foreach (var match in _matches)
         {
             match.Begin();

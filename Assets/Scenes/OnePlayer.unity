@@ -251,7 +251,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _matches:
   - {fileID: 2072652749}
-  _bestOf: 2
+  _bestOf: 5
+  _matchInterval: 1
+  _showResultsMaxTime: 3
   _bestPlayerName: {fileID: 1601982604}
   _bestPlayerScore: {fileID: 2079493907}
   _fadeMaxTime: 1

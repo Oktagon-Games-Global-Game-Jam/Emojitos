@@ -121,7 +121,7 @@ public class Game : MonoBehaviour
 
         yield return new WaitForSeconds(_showResultsMaxTime);
 
-        SceneManager.LoadScene(Utils.StartGameScene);
+        SceneManager.LoadScene(Utils.MainMenuScene);
     }
 
     private IEnumerator Fade(float alphaStart, float alphaEnd)

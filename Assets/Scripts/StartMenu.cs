@@ -5,6 +5,6 @@ public class StartMenu : MonoBehaviour
 {
     public void GoToGame()
     {
-        SceneManager.LoadScene("OnePlayer");
+        SceneManager.LoadScene(Utils.OnePlayerScene);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public enum DeltaTimeType
 {
@@ -21,6 +22,16 @@ public enum JoystickIndex
 
 public class Utils
 {
+    public readonly static int StartGameScene = 0;
+    public readonly static int MainMenuScene = 1;
+    public readonly static int OnePlayerScene = 2;
+
+    [RuntimeInitializeOnLoadMethod]
+    private static void OnRuntimeMethoadLoad()
+    {
+        SceneManager.LoadScene(MainMenuScene);
+    }
+
     public static float GetDeltaTime(DeltaTimeType deltaTimeType)
     {
         switch (deltaTimeType)

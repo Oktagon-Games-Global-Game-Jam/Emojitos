@@ -30,7 +30,7 @@ public class Game : MonoBehaviour
     {
         _finishedMatches = 0;
         _resultsDict.Clear();
-
+            
         StartCoroutine(StartMatches());
     }
 
@@ -121,7 +121,7 @@ public class Game : MonoBehaviour
 
         yield return new WaitForSeconds(_showResultsMaxTime);
 
-        SceneManager.LoadScene("StartGame");
+        SceneManager.LoadScene(Utils.StartGameScene);
     }
 
     private IEnumerator Fade(float alphaStart, float alphaEnd)

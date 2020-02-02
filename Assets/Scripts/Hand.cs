@@ -36,8 +36,8 @@ public class Hand : MonoBehaviour
         // move hand with keyboard
         string horizontalAxisName = "Horizontal";
         string verticalAxisName = "Vertical";
-        float horizontalAxis = Input.GetAxis(horizontalAxisName) * _horizontalSensibility;
-        float verticalAxis = Input.GetAxis(verticalAxisName) * _verticalSensibility;
+        float horizontalAxis = Input.GetAxisRaw(horizontalAxisName) * _horizontalSensibility;
+        float verticalAxis = Input.GetAxisRaw(verticalAxisName) * _verticalSensibility;
         Vector2 handMovement = new Vector2(horizontalAxis, verticalAxis);
 
         //// move hand with mouse

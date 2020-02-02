@@ -418,7 +418,7 @@ TextureImporter:
     second: emojitos map_137
   - first:
       213: 8238481857302936336
-    second: emojitos map_138
+    second: SadMouth
   - first:
       213: -475888662590110667
     second: emojitos map_139
@@ -4469,7 +4469,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: emojitos map_138
+      name: SadMouth
       rect:
         serializedVersion: 2
         x: 1828

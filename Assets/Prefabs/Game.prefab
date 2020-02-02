@@ -960,6 +960,7 @@ MonoBehaviour:
   _emojiDatas:
   - {fileID: 11400000, guid: be90eab145c802a42864d8d268a2e452, type: 2}
   - {fileID: 11400000, guid: 59b85f325b042174e8e6cb6d31fb7701, type: 2}
+  - {fileID: 11400000, guid: db9de79755dee1a45ae035797a23f9f0, type: 2}
   _bestPlayerName: {fileID: 5537244675622659622}
   _bestPlayerScore: {fileID: 5537244675010181561}
   _fadeMaxTime: 1

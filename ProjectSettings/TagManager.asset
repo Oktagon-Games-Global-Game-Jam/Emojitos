@@ -8,6 +8,10 @@ TagManager:
   - Mouth
   - Tear
   - HappiestEye
+  - Cry
+  - DropLeftEye
+  - DropRightEye
+  - Laugh
   layers:
   - Default
   - TransparentFX

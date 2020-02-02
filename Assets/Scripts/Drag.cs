@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Drag : MonoBehaviour, IInteractable
 {
+    [SerializeField] private AudioClip _pickSfx;
+    [SerializeField] private AudioClip _dropSfx;
+    private AudioSource _pieceSounds;
     private Collider2D _collider2D;
     private Hand _cursor;
     private Vector2? _cursorLastPosition;
@@ -13,6 +16,11 @@ public class Drag : MonoBehaviour, IInteractable
         if (_collider2D == null)
         {
             _collider2D = GetComponent<Collider2D>();
+        }
+
+        if (_pieceSounds == null)
+        {
+            _pieceSounds = GetComponent<AudioSource>();
         }
         _cursor = null;
         _cursorLastPosition = null;
@@ -29,6 +37,8 @@ public class Drag : MonoBehaviour, IInteractable
             _cursorLastPosition = cursorPosition;
 
             hand.CurrentDragInstance = GetInstanceID();
+
+            _pieceSounds.PlayOneShot(_pickSfx);
         }
         else
         {
@@ -59,6 +69,7 @@ public class Drag : MonoBehaviour, IInteractable
         if (hand.CurrentDragInstance == GetInstanceID())
         {
             hand.CurrentDragInstance = null;
+            _pieceSounds.PlayOneShot(_dropSfx);
         }
     }
 }

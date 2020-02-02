@@ -58,11 +58,11 @@ public class Hand : MonoBehaviour
         transform.position = position;
 
         string submitButtonName = "Submit";// string.Format("Submit {0}", (int)_playerIndex);
-        if (Input.GetButtonDown(submitButtonName) || Input.GetMouseButtonDown(0))
+        if (Input.GetButtonDown(submitButtonName))
         {
             _hold?.Invoke(this);
         }
-        else if (Input.GetButtonUp(submitButtonName) || Input.GetMouseButtonUp(0))
+        else if (Input.GetButtonUp(submitButtonName))
         {
             _release?.Invoke(this);
         }

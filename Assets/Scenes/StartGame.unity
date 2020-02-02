@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PRESS START
+  m_text: start game
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a42eeed7ecb0ea549916d83fce360534, type: 2}
   m_sharedMaterial: {fileID: -6935213855413428711, guid: a42eeed7ecb0ea549916d83fce360534,
@@ -246,7 +246,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 33386825}
-    characterCount: 11
+    characterCount: 10
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 735162319}
   - component: {fileID: 735162318}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Start Game Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

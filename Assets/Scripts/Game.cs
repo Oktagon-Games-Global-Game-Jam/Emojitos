@@ -28,14 +28,14 @@ public class Game : MonoBehaviour
 
     protected virtual void OnEnable()
     {
+        _finishedMatches = 0;
+        _resultsDict.Clear();
+
         StartCoroutine(StartMatches());
     }
 
     private IEnumerator StartMatches()
     {
-        _finishedMatches = 0;
-        _resultsDict.Clear();
-
         foreach (var match in _matches)
         {
             match.Cleanup();

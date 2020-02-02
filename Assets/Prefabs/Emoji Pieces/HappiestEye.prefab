@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1996492795}
   - component: {fileID: 4009349298585794453}
   m_Layer: 0
-  m_Name: Eye
-  m_TagString: Eye
+  m_Name: HappiestEye
+  m_TagString: HappiestEye
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,7 +57,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.15, y: 0.75}
   m_EdgeRadius: 0
 --- !u!114 &4009349298585794453
 MonoBehaviour:
@@ -141,7 +141,7 @@ SpriteRenderer:
   m_SortingLayerID: -561201877
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c7575242ccfe0c2478270b1da909ea08, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f1a0dc6c277917e4e97eb86e9adde761, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

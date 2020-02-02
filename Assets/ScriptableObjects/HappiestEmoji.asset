@@ -15,6 +15,6 @@ MonoBehaviour:
   _emojiPrefab: {fileID: 3174883180971102055, guid: 4c657e7ebc5c55f4087892438e5da373,
     type: 3}
   _emojiPiecePrefabs:
-  - {fileID: 4009349298585794453, guid: e611ff6b7a5b0a446bf1da0993fd73f8, type: 3}
-  - {fileID: 4009349298585794453, guid: e611ff6b7a5b0a446bf1da0993fd73f8, type: 3}
-  - {fileID: 3023419582376289201, guid: c69d039cd4190414d8b2b6bab6160dab, type: 3}
+  - {fileID: -7594919593674049173, guid: e611ff6b7a5b0a446bf1da0993fd73f8, type: 3}
+  - {fileID: -7594919593674049173, guid: e611ff6b7a5b0a446bf1da0993fd73f8, type: 3}
+  - {fileID: 3759935332683032455, guid: c69d039cd4190414d8b2b6bab6160dab, type: 3}
